@@ -1,10 +1,8 @@
-import { Router } from 'express';
-import { Request, Response } from 'express';
+import { Router, Response } from 'express';
 
 const apiRoutes = Router();
 
-apiRoutes.get('/' , (_,res: Response )  => {
-  return res.send('ok');
-})
+apiRoutes.get('/', (_, res: Response) => res.send('ok'));
 
+// eslint-disable-next-line import/prefer-default-export
 export { apiRoutes };
