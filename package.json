@@ -17,7 +17,10 @@
     "http-errors": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
-    "typeorm": "^0.2.34"
+    "mysql2": "^2.2.5",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.34",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.2",

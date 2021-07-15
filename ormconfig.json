@@ -1,6 +1,13 @@
 {
-  "type": "sqlite",
-  "database": "src/database/database.sqlite",
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "user",
+  "password": "password",
+  "database": "ouvidoria_dev",
+  "synchronize": true,
+  "logging": false,
+  
 
   "migrations":["src/database/migrations/*.ts"],
   "entities":["src/entities/*.ts"],

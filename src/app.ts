@@ -3,6 +3,7 @@ import createError from 'http-errors';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
+import 'reflect-metadata';
 import 'express-async-errors';
 
 import { apiRoutes } from './routes';
