@@ -15,7 +15,7 @@ class CreateDistrictService {
     });
 
     if (tagAlreadyExists) {
-      throw new Error('Tag already exists');
+      throw new Error('District already exists');
     }
 
     const tag = districtsRepositories.create({

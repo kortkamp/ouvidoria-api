@@ -1,10 +1,10 @@
+import 'reflect-metadata';
 import express, { Request, Response, NextFunction } from 'express';
-import createError from 'http-errors';
+
+import 'express-async-errors';
+// import createError from 'http-errors';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-
-import 'reflect-metadata';
-import 'express-async-errors';
 
 import { apiRoutes } from './routes';
 
@@ -20,18 +20,26 @@ app.use(cookieParser());
 app.use('/api', apiRoutes);
 
 // catch 404 and forward to error handler
-app.use((req:Request, res:Response, next:NextFunction) => {
-  next(createError(404));
+// app.use((req:Request, res:Response, next:NextFunction) => {
+//   next(createError(404));
+// });
+
+app.get('api/error', () => {
+  throw new Error('Erro artificial');
 });
 
 // error handler
-app.use((err:any, req:Request, res:Response) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use((err: Error, request: Request, response:Response, next:NextFunction) => {
+  if (err instanceof Error) {
+    return response.status(400).json({
+      error: err.message,
+    });
+  }
 
-  // render the error page
-  res.status(err.status || 500).send();
+  return response.status(500).json({
+    status: 'erro',
+    message: 'Internal Server Error',
+  });
 });
 
 module.exports = app;
