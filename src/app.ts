@@ -8,6 +8,8 @@ import 'express-async-errors';
 
 import { apiRoutes } from './routes';
 
+import './database/index';
+
 const app = express();
 
 app.use(logger('dev'));
