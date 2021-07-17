@@ -13,4 +13,4 @@ class ListDistrictsController {
   }
 }
 
-export { ListDistrictsController };
+export default ListDistrictsController;

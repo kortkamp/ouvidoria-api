@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import ensureAuthenticated from '../../middlewares/ensureAuthenticated';
 
-import { CreateComplaintController } from '../../controllers/CreateComplaintController';
+import CreateComplaintController from '../../controllers/CreateComplaintController';
 
 const route = Router();
 

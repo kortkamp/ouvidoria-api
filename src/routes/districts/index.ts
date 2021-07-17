@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import ensureAuthenticated from '../../middlewares/ensureAuthenticated';
 
-import { CreateDistrictController } from '../../controllers/CreateDistrictController';
-import { ListDistrictsController } from '../../controllers/ListDistrictsController';
+import CreateDistrictController from '../../controllers/CreateDistrictController';
+import ListDistrictsController from '../../controllers/ListDistrictsController';
 
 const route = Router();
 

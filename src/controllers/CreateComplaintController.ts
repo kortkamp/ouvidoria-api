@@ -21,4 +21,4 @@ class CreateComplaintController {
   }
 }
 
-export { CreateComplaintController };
+export default CreateComplaintController;

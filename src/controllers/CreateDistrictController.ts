@@ -14,4 +14,4 @@ class CreateDistrictController {
   }
 }
 
-export { CreateDistrictController };
+export default CreateDistrictController;
