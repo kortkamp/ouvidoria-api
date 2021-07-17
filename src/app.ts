@@ -6,7 +6,7 @@ import 'express-async-errors';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
-import { apiRoutes } from './routes';
+import apiRoutes from './routes';
 
 import './database/index';
 
