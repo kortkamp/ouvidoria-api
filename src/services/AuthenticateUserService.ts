@@ -4,7 +4,7 @@ import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { UsersRepositories } from '../repositories/UsersRepositories';
 
-import { config } from '../config';
+import config from '../config';
 
 interface IAuthenticateRequest {
   email:string;

@@ -6,4 +6,4 @@ const config = {
   jwtSecret: process.env.JWT_SECRET as string,
 };
 
-export { config };
+export default config;
