@@ -14,7 +14,6 @@ class AuthenticateUserService {
   async execute({ email, password }: IAuthenticateRequest) {
     const usersRepositories = getCustomRepository(UsersRepositories);
 
-    // verificar se email exists
     const user = await usersRepositories.findOne({
       email,
     });
@@ -22,14 +21,12 @@ class AuthenticateUserService {
     if (!user) {
       throw new Error('Email/Password incorrect');
     }
-    // verificar se senha está correta
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
       throw new Error('Email/Password incorrect');
     }
 
-    // gerar token
     const token = sign({
       email: user.email,
     },
