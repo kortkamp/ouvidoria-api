@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import express, { Request, Response, NextFunction } from 'express';
 
 import 'express-async-errors';
-// import createError from 'http-errors';
+import createError from 'http-errors';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
@@ -20,12 +20,8 @@ app.use(cookieParser());
 app.use('/api', apiRoutes);
 
 // catch 404 and forward to error handler
-// app.use((req:Request, res:Response, next:NextFunction) => {
-//   next(createError(404));
-// });
-
-app.get('api/error', () => {
-  throw new Error('Erro artificial');
+app.use((req:Request, res:Response, next:NextFunction) => {
+  next(createError(404));
 });
 
 // error handler
