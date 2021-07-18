@@ -1,8 +1,8 @@
 /* eslint-disable class-methods-use-this */
 import { Request, Response } from 'express';
 import { getCustomRepository } from 'typeorm';
-import { CreateUserService } from '../services/CreateUserService';
-import { UsersRepositories } from '../repositories/UsersRepositories';
+import { CreateUserService } from '../../services/CreateUserService';
+import { UsersRepositories } from '../../repositories/UsersRepositories';
 
 class CreateUserController {
   async handle(request: Request, response: Response) {

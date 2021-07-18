@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable class-methods-use-this */
 import { Request, Response } from 'express';
-import { CreateAnswerService } from '../services/CreateAnswerService';
+import { CreateAnswerService } from '../../services/CreateAnswerService';
 
 class CreateAnswerController {
   async handle(request: Request, response: Response) {

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 
-import config from '../config';
+import config from '../../config';
 
 interface IPayload {
   sub:string

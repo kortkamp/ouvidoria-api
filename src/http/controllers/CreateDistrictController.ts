@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import { Request, Response } from 'express';
-import { CreateDistrictService } from '../services/CreateDistrictService';
+import { CreateDistrictService } from '../../services/CreateDistrictService';
 
 class CreateDistrictController {
   async handle(request: Request, response: Response) {
