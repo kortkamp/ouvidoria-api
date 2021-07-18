@@ -3,7 +3,7 @@ import {
   Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn,
 } from 'typeorm';
 
-import { Expose } from 'class-transformer';
+import { Exclude, Expose } from 'class-transformer';
 
 import { v4 as uuid } from 'uuid';
 
@@ -15,9 +15,11 @@ class District {
   @Column()
   name: string;
 
+  @Exclude()
   @CreateDateColumn()
   created_at: Date;
 
+  @Exclude()
   @UpdateDateColumn()
   updated_at: Date;
 

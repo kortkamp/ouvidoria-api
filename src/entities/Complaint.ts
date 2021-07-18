@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+import { Exclude } from 'class-transformer';
 import {
   Entity, PrimaryColumn, Column, CreateDateColumn, JoinColumn, ManyToOne,
 } from 'typeorm';
@@ -19,6 +20,7 @@ class Complaint {
   @ManyToOne(() => User)
   userSender: string;
 
+  @Exclude()
   @Column()
   district_id:string;
 
