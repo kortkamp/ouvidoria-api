@@ -7,7 +7,7 @@ import { v4 as uuid } from 'uuid';
 import { District } from './District';
 import { User } from './User';
 
-@Entity('compliments')
+@Entity('complaints')
 class Complaint {
   @PrimaryColumn()
   readonly id: string;
