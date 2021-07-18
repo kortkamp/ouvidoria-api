@@ -33,6 +33,6 @@ export class CreateDistrict1626399675303 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    queryRunner.dropTable('districts');
+    await queryRunner.dropTable('districts');
   }
 }

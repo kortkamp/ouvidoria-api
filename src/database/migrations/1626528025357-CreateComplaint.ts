@@ -44,7 +44,7 @@ export class CreateComplaint1626528025357 implements MigrationInterface {
             onUpdate: 'CASCADE',
           },
           {
-            name: 'FKDistrictCompliments',
+            name: 'FKDistrictComplaints',
             referencedTableName: 'districts',
             referencedColumnNames: ['id'],
             columnNames: ['district_id'],
@@ -57,6 +57,6 @@ export class CreateComplaint1626528025357 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    queryRunner.dropTable('complaints');
+    await queryRunner.dropTable('complaints');
   }
 }
