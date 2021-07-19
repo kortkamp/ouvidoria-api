@@ -26,6 +26,10 @@ class Complaint {
   @Column()
   district_id:string;
 
+  @ManyToOne(() => District, (district) => district.complaints)
+  @JoinColumn({ name: 'district_id' })
+  district: District;
+
   @OneToMany(() => Answer, (answers) => answers.complaint, { eager: true })
   @JoinColumn({ name: 'id' })
   answers: Answer[];
