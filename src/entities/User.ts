@@ -9,12 +9,14 @@ import { Exclude } from 'class-transformer';
 
 @Entity('users')
 class User {
+  @Exclude()
   @PrimaryColumn()
   readonly id: string;
 
   @Column()
   name: string;
 
+  @Exclude()
   @Column()
   email: string;
 
@@ -25,9 +27,11 @@ class User {
   @Column()
   password:string;
 
+  @Exclude()
   @CreateDateColumn()
   created_at: Date;
 
+  @Exclude()
   @UpdateDateColumn()
   updated_at: Date;
 

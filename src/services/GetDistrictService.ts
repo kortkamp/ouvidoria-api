@@ -17,7 +17,10 @@ class GetDistrictService {
 
     const district = await districtsRepositories.findOne(district_id) as IDistrict;
 
-    const complaints = await complaintsRepositories.find({ where: { district_id } });
+    const complaints = await complaintsRepositories.find({
+      where: { district_id },
+      relations: ['user'],
+    });
 
     district.complaints = complaints;
 
