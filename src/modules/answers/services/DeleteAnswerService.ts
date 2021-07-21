@@ -8,12 +8,12 @@ class DeleteAnswerService {
   async execute(answer_id:string) {
     const answersRepositories = getCustomRepository(AnswersRepositories);
 
-    const asnwer = await answersRepositories.findOne(answer_id);
-    if (!asnwer) {
+    const answer = await answersRepositories.findOne(answer_id);
+    if (!answer) {
       throw new AppError('Answer not Found', 404);
     }
 
-    const result = await answersRepositories.delete(answer_id);
+    const result = await answersRepositories.remove(answer);
 
     return result;
   }
