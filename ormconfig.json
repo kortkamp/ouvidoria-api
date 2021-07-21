@@ -9,10 +9,12 @@
   "logging": false,
   
 
-  "migrations":["src/database/migrations/*.ts"],
-  "entities":["src/entities/*.ts"],
+  "migrations":["src/shared/infra/typeorm/migrations/*.ts"],
+  "entities":[
+    "src/modules/**/infra/typeorm/entities/*.ts"
+  ],
   "cli":{
-    "migrationsDir": "src/database/migrations",
-    "entitiesDir": "src/entities"
+    "migrationsDir": "src/shared/infra/typeorm/migrations",
+    "entitiesDir": "src/modules/**/infra/typeorm/entities"
   }
 }

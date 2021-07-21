@@ -3,10 +3,10 @@
 /**
  * Module dependencies.
  */
-
-const app = require('../src/app');
-const debug = require('debug')('ouvidoria-api:server');
 const http = require('http');
+
+const app = require('../src/shared/infra/http/app');
+const debug = require('debug')('ouvidoria-api:server');
 
 /**
  * Get port from environment and store in Express.

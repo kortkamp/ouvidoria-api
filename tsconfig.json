@@ -5,9 +5,16 @@
     "strict": true,                                 /* Enable all strict type-checking options. */
     "strictPropertyInitialization": false,        /* Enable strict checking of property initialization in classes. */
     "typeRoots": ["./src/@types", "./node_modules/@types"],                             /* List of folders to include type definitions from. */
+    "baseUrl": "./src",
+    "paths": {
+      "@modules/*": ["modules/*"],
+      "@config/*": ["config/*"],
+      "@shared/*": ["shared/*"]
+    },
     // "types": [],                                 /* Type declaration files to be included in compilation. */
     "outDir": "./dist",
     "rootDir": "./src",
+ 
     "esModuleInterop": true,                        /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
     /* Experimental Options */
     "experimentalDecorators": true,              /* Enables experimental support for ES7 decorators. */
@@ -16,6 +23,7 @@
     "skipLibCheck": true,                           /* Skip type checking of declaration files. */
     "forceConsistentCasingInFileNames": true        /* Disallow inconsistently-cased references to the same file. */
   },
+
   "include": [
     "src"
   ]

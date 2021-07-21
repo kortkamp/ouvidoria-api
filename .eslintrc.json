@@ -1,11 +1,10 @@
 {
     "settings": {
         "import/resolver": {
-          "node": {
-            "extensions": [".js", ".ts"]
-          }
+          "typescript": {}
         }
     },
+    
     "env": {
         "es2021": true,
         "node": true
