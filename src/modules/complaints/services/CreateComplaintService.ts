@@ -4,18 +4,13 @@ import { getCustomRepository } from 'typeorm';
 import { ComplaintsRepositories } from '@modules/complaints/infra/typeorm/repositories/ComplaintsRepositories';
 import { DistrictsRepositories } from '@modules/districts/infra/typeorm/repositories/DistrictsRepositories';
 import AppError from '@shared/errors/AppError';
-
+import ICreateComplaintDTO from '../dtos/ICreateComplaintDTO';
 /* eslint-disable camelcase */
-interface IComplaintRequest {
-  district_id: string;
-  user_sender:string;
-  message: string;
-}
 
 class CreateComplaintService {
   async execute({
     district_id, user_sender, message,
-  }: IComplaintRequest) {
+  }: ICreateComplaintDTO) {
     const complaintsRepositories = getCustomRepository(ComplaintsRepositories);
     const districtsRepositories = getCustomRepository(DistrictsRepositories);
 

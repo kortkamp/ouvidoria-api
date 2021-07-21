@@ -4,18 +4,12 @@ import { getCustomRepository } from 'typeorm';
 import { AnswersRepositories } from '@modules/answers/infra/typeorm/repositories/AnswersRepositories';
 import { ComplaintsRepositories } from '@modules/complaints/infra/typeorm/repositories/ComplaintsRepositories';
 import AppError from '@shared/errors/AppError';
-
-/* eslint-disable camelcase */
-interface IAnswerRequest {
-  complaint_id: string;
-  user_sender:string;
-  message: string;
-}
+import ICreateAnswerDTO from '../dtos/ICreateAnswerDTO';
 
 class CreateAnswerService {
   async execute({
     complaint_id, user_sender, message,
-  }: IAnswerRequest) {
+  }: ICreateAnswerDTO) {
     const answersRepositories = getCustomRepository(AnswersRepositories);
     const complaintsRepositories = getCustomRepository(ComplaintsRepositories);
 

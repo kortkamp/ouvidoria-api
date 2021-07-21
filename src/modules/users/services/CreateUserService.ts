@@ -4,17 +4,12 @@ import { hash } from 'bcryptjs';
 import { UsersRepositories } from '@modules/users/infra/typeorm/repositories/UsersRepositories';
 import AppError from '@shared/errors/AppError';
 
-interface IUSerRequest {
-  name: string;
-  email: string;
-  admin?: boolean;
-  password:string;
+import ICreateUserDTO from '../dtos/ICreateUserDTO';
 
-}
 class CreateUserService {
   async execute({
     name, email, admin = false, password,
-  } : IUSerRequest) {
+  } : ICreateUserDTO) {
     const usersRepository = getCustomRepository(UsersRepositories);
 
     const userAlreadyExists = await usersRepository.findOne({
