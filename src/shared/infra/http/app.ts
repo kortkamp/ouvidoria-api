@@ -9,6 +9,7 @@ import logger from 'morgan';
 import apiRoutes from './routes';
 
 import '../typeorm/index';
+import AppError from '@shared/errors/AppError';
 
 const app = express();
 
@@ -26,9 +27,15 @@ app.use((req:Request, res:Response, next:NextFunction) => {
 
 // error handler
 app.use((err: Error, request: Request, response:Response, next:NextFunction) => {
-  if (err instanceof Error) {
-    return response.status(400).json({
-      error: err.message,
+  // if (err instanceof Error) {
+  //   return response.status(400).json({
+  //     error: err.message,
+  //   });
+  // }
+  if (err instanceof AppError) {
+    return response.status(err.statusCode).json({
+      status: 'error',
+      message: err.message,
     });
   }
 

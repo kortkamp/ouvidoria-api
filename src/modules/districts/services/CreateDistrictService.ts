@@ -1,13 +1,14 @@
 /* eslint-disable class-methods-use-this */
 import { getCustomRepository } from 'typeorm';
 import { DistrictsRepositories } from '@modules/districts/infra/typeorm/repositories/DistrictsRepositories';
+import AppError from '@shared/errors/AppError';
 
 class CreateDistrictService {
   async execute(name : string) {
     const districtsRepositories = getCustomRepository(DistrictsRepositories);
 
     if (!name) {
-      throw new Error('Invalid Tag Name');
+      throw new AppError('Invalid Tag Name', 401);
     }
 
     const tagAlreadyExists = await districtsRepositories.findOne({
@@ -15,7 +16,7 @@ class CreateDistrictService {
     });
 
     if (tagAlreadyExists) {
-      throw new Error('District already exists');
+      throw new AppError('District already exists', 401);
     }
 
     const tag = districtsRepositories.create({

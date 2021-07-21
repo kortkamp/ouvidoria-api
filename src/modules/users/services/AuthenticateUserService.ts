@@ -5,6 +5,7 @@ import { sign } from 'jsonwebtoken';
 import { UsersRepositories } from '@modules/users/infra/typeorm/repositories/UsersRepositories';
 
 import config from '@config/index';
+import AppError from '@shared/errors/AppError';
 
 interface IAuthenticateRequest {
   email:string;
@@ -19,12 +20,12 @@ class AuthenticateUserService {
     });
 
     if (!user) {
-      throw new Error('Email/Password incorrect');
+      throw new AppError('Email/Password incorrect', 401);
     }
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
-      throw new Error('Email/Password incorrect');
+      throw new AppError('Email/Password incorrect', 401);
     }
 
     const token = sign({

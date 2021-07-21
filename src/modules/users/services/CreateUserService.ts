@@ -2,6 +2,7 @@
 import { getCustomRepository } from 'typeorm';
 import { hash } from 'bcryptjs';
 import { UsersRepositories } from '@modules/users/infra/typeorm/repositories/UsersRepositories';
+import AppError from '@shared/errors/AppError';
 
 interface IUSerRequest {
   name: string;
@@ -21,7 +22,7 @@ class CreateUserService {
     });
 
     if (userAlreadyExists) {
-      throw new Error('User already exists');
+      throw new AppError('User already exists', 401);
     }
 
     const passwordHash = await hash(password, 8);

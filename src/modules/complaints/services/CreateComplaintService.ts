@@ -3,6 +3,7 @@
 import { getCustomRepository } from 'typeorm';
 import { ComplaintsRepositories } from '@modules/complaints/infra/typeorm/repositories/ComplaintsRepositories';
 import { DistrictsRepositories } from '@modules/districts/infra/typeorm/repositories/DistrictsRepositories';
+import AppError from '@shared/errors/AppError';
 
 /* eslint-disable camelcase */
 interface IComplaintRequest {
@@ -21,7 +22,7 @@ class CreateComplaintService {
     const districtExists = await districtsRepositories.findOne(district_id);
 
     if (!districtExists) {
-      throw new Error('District does not exists');
+      throw new AppError('District does not exists', 401);
     }
 
     const compliment = complaintsRepositories.create({

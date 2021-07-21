@@ -3,6 +3,7 @@
 import { getCustomRepository } from 'typeorm';
 import { AnswersRepositories } from '@modules/answers/infra/typeorm/repositories/AnswersRepositories';
 import { ComplaintsRepositories } from '@modules/complaints/infra/typeorm/repositories/ComplaintsRepositories';
+import AppError from '@shared/errors/AppError';
 
 /* eslint-disable camelcase */
 interface IAnswerRequest {
@@ -21,7 +22,7 @@ class CreateAnswerService {
     const complaintExists = await complaintsRepositories.findOne(complaint_id);
 
     if (!complaintExists) {
-      throw new Error('Complaint does not exists');
+      throw new AppError('Complaint does not exists', 401);
     }
 
     const compliment = answersRepositories.create({
