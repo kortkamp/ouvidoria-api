@@ -1,22 +1,15 @@
+/* eslint-disable camelcase */
 /* eslint-disable class-methods-use-this */
-import { getCustomRepository } from 'typeorm';
-import { AnswersRepositories } from '@modules/answers/infra/typeorm/repositories/AnswersRepositories';
-
-import AppError from '@shared/errors/AppError';
+import AnswersRepository from '@modules/answers/infra/typeorm/repositories/AnswersRepository';
 
 class DeleteAnswerService {
   async execute(answer_id:string) {
-    const answersRepositories = getCustomRepository(AnswersRepositories);
+    const answersRepository = new AnswersRepository();
 
-    const answer = await answersRepositories.findOne(answer_id);
-    if (!answer) {
-      throw new AppError('Answer not Found', 404);
-    }
-
-    const result = await answersRepositories.remove(answer);
+    const result = await answersRepository.delete(answer_id);
 
     return result;
   }
 }
 
-export { DeleteAnswerService };
+export default DeleteAnswerService;

@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 
 import { Request, Response } from 'express';
-import { AuthenticateUserService } from '@modules/users/services/AuthenticateUserService';
+import AuthenticateUserService from '@modules/users/services/AuthenticateUserService';
 
 class AuthenticateUserController {
   async handle(request:Request, response: Response) {

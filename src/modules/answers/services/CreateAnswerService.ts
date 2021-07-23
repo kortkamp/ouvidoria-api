@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable class-methods-use-this */
 
-import AnswersRepository from '@modules/answers/infra/typeorm/repositories/AnswersRepositories';
+import AnswersRepository from '@modules/answers/infra/typeorm/repositories/AnswersRepository';
 import ComplaintsRepository from '@modules/complaints/infra/typeorm/repositories/ComplaintsRepository';
 import AppError from '@shared/errors/AppError';
 import ICreateAnswerDTO from '../dtos/ICreateAnswerDTO';

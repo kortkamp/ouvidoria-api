@@ -7,6 +7,7 @@ interface IAnswersRepository {
   create(answer: ICreateComplaintDTO): Promise<Answer>;
   findById(id:string):Promise<Answer | undefined>;
   listAll():Promise<Answer[]>;
+  delete(id:string):Promise<void>;
 }
 
 export default IAnswersRepository;

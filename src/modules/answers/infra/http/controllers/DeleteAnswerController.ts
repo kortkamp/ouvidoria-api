@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable class-methods-use-this */
 import { Request, Response } from 'express';
-import { DeleteAnswerService } from '@modules/answers/services/DeleteAnswerService';
+import DeleteAnswerService from '@modules/answers/services/DeleteAnswerService';
 
 class CreateAnswerController {
   async handle(request: Request, response: Response) {
