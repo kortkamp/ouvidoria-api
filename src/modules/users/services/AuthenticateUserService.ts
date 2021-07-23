@@ -5,13 +5,10 @@ import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepo
 
 import config from '@config/index';
 import AppError from '@shared/errors/AppError';
+import IAuthenticateRequestDTO from '@modules/users/dtos/IAuthenticateRequestDTO';
 
-interface IAuthenticateRequest {
-  email:string;
-  password:string
-}
 class AuthenticateUserService {
-  async execute({ email, password }: IAuthenticateRequest) {
+  async execute({ email, password }: IAuthenticateRequestDTO) {
     const usersRepository = new UsersRepository();
 
     const user = await usersRepository.findByEmail(
@@ -40,4 +37,4 @@ class AuthenticateUserService {
   }
 }
 
-export { AuthenticateUserService };
+export default AuthenticateUserService;
