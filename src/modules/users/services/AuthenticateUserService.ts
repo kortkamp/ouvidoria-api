@@ -1,17 +1,26 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-useless-constructor */
 /* eslint-disable class-methods-use-this */
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
-import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
 
 import config from '@config/index';
 import AppError from '@shared/errors/AppError';
 import IAuthenticateRequestDTO from '@modules/users/dtos/IAuthenticateRequestDTO';
+import { inject, injectable } from 'tsyringe';
 
+@injectable()
 class AuthenticateUserService {
-  async execute({ email, password }: IAuthenticateRequestDTO) {
-    const usersRepository = new UsersRepository();
+  constructor(
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
+  ) {}
 
-    const user = await usersRepository.findByEmail(
+  async execute({ email, password }: IAuthenticateRequestDTO) {
+    // const usersRepository = new UsersRepository();
+
+    const user = await this.usersRepository.findByEmail(
       email,
     );
 
