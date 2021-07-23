@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { getCustomRepository } from 'typeorm';
 import { User } from '@modules/users/infra/typeorm/entities/User';
-import { UsersRepositories } from '@modules/users/infra/typeorm/repositories/UsersRepositories';
+import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
 
 export default async function ensureAdmin(
   request: Request,
@@ -11,9 +10,9 @@ export default async function ensureAdmin(
   // eslint-disable-next-line camelcase
   const { user_id } = request;
 
-  const usersRepositrories = getCustomRepository(UsersRepositories);
+  const usersRepository = new UsersRepository();
 
-  const { admin } = await usersRepositrories.findOne(user_id) as User;
+  const { admin } = await usersRepository.findById(user_id) as User;
 
   if (admin) {
     return next();

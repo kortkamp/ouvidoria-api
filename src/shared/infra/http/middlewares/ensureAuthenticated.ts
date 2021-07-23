@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { Request, Response, NextFunction } from 'express';
 
 export default function EnsureAuthenticated(

@@ -4,4 +4,4 @@ export default interface ICreateUserDTO {
   admin?: boolean;
   password:string;
 
-}
+};

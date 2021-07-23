@@ -1,9 +1,9 @@
 /* eslint-disable class-methods-use-this */
 import { Request, Response } from 'express';
-import { getCustomRepository } from 'typeorm';
-import { CreateUserService } from '@modules/users/services/CreateUserService';
-import { UsersRepositories } from '@modules/users/infra/typeorm/repositories/UsersRepositories';
-
+import { container } from 'tsyringe';
+// import { getCustomRepository } from 'typeorm';
+import CreateUserService from '@modules/users/services/CreateUserService';
+// import { UsersRepository } from '@modules/users/infra/typeorm/repositories/UsersRepository';
 
 class CreateUserController {
   async handle(request: Request, response: Response) {
@@ -12,21 +12,21 @@ class CreateUserController {
     } = request.body;
 
     // we can have just one admin
-    let newUserAdmin = false;
-    if (admin) {
-      const usersRepositories = getCustomRepository(UsersRepositories);
-      const existsAdmin = await usersRepositories.findOne({ where: { admin: true } });
-      if (!existsAdmin) {
-        newUserAdmin = true;
-      } else {
-        return response.status(401).json({ error: 'unauthorized' });
-      }
-    }
+    // let newUserAdmin = false;
+    // if (admin) {
+    //   const usersRepositories = getCustomRepository(UsersRepositories);
+    //   const existsAdmin = await usersRepositoriy.findOne({ where: { admin: true } });
+    //   if (!existsAdmin) {
+    //     newUserAdmin = true;
+    //   } else {
+    //     return response.status(401).json({ error: 'unauthorized' });
+    //   }
+    // }
 
-    const createUserService = new CreateUserService();
+    const createUserService = container.resolve(CreateUserService);
 
     const user = await createUserService.execute({
-      name, email, admin: newUserAdmin, password,
+      name, email, admin, password,
     });
 
     return response.json(user);

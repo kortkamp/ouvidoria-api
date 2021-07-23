@@ -9,6 +9,7 @@ import logger from 'morgan';
 import apiRoutes from './routes';
 
 import '../typeorm/index';
+import '@shared/container';
 import AppError from '@shared/errors/AppError';
 
 const app = express();

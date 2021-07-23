@@ -1,8 +1,7 @@
 /* eslint-disable class-methods-use-this */
-import { getCustomRepository } from 'typeorm';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
-import { UsersRepositories } from '@modules/users/infra/typeorm/repositories/UsersRepositories';
+import { UsersRepository } from '@modules/users/infra/typeorm/repositories/UsersRepository';
 
 import config from '@config/index';
 import AppError from '@shared/errors/AppError';
@@ -13,11 +12,11 @@ interface IAuthenticateRequest {
 }
 class AuthenticateUserService {
   async execute({ email, password }: IAuthenticateRequest) {
-    const usersRepositories = getCustomRepository(UsersRepositories);
+    const usersRepository = new UsersRepository();
 
-    const user = await usersRepositories.findOne({
+    const user = await usersRepository.findByEmail(
       email,
-    });
+    );
 
     if (!user) {
       throw new AppError('Email/Password incorrect', 401);
