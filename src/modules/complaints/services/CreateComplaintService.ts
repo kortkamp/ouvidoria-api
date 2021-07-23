@@ -29,4 +29,4 @@ class CreateComplaintService {
     return compliment;
   }
 }
-export { CreateComplaintService };
+export default CreateComplaintService;
