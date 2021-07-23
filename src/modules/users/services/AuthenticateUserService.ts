@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
-import { UsersRepository } from '@modules/users/infra/typeorm/repositories/UsersRepository';
+import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
 
 import config from '@config/index';
 import AppError from '@shared/errors/AppError';

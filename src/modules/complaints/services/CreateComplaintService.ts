@@ -2,7 +2,7 @@
 
 import { getCustomRepository } from 'typeorm';
 import { ComplaintsRepositories } from '@modules/complaints/infra/typeorm/repositories/ComplaintsRepositories';
-import { DistrictsRepositories } from '@modules/districts/infra/typeorm/repositories/DistrictsRepositories';
+import DistrictsRepositories from '@modules/districts/infra/typeorm/repositories/DistrictsRepository';
 import AppError from '@shared/errors/AppError';
 import ICreateComplaintDTO from '../dtos/ICreateComplaintDTO';
 /* eslint-disable camelcase */
@@ -14,7 +14,7 @@ class CreateComplaintService {
     const complaintsRepositories = getCustomRepository(ComplaintsRepositories);
     const districtsRepositories = getCustomRepository(DistrictsRepositories);
 
-    const districtExists = await districtsRepositories.findOne(district_id);
+    const districtExists = await districtsRepositories.findById(district_id);
 
     if (!districtExists) {
       throw new AppError('District does not exists', 401);

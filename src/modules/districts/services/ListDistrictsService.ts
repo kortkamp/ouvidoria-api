@@ -1,16 +1,15 @@
 /* eslint-disable class-methods-use-this */
-import { getCustomRepository } from 'typeorm';
 import { classToPlain } from 'class-transformer';
-import { DistrictsRepositories } from '@modules/districts/infra/typeorm/repositories/DistrictsRepositories';
+import DistrictsRepository from '@modules/districts/infra/typeorm/repositories/DistrictsRepository';
 
 class ListDistrictsService {
   async execute() {
-    const districtsRepositories = getCustomRepository(DistrictsRepositories);
+    const districtsRepository = new DistrictsRepository();
 
-    const districts = await districtsRepositories.find();
+    const districts = await districtsRepository.listAll();
 
     return classToPlain(districts);
   }
 }
 
-export { ListDistrictsService };
+export default ListDistrictsService;
