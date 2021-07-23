@@ -23,6 +23,14 @@ class DistrictsRepository implements IDistrictRepository {
     return districtFound;
   }
 
+  public async findWithRelations(id:string, relation:string):Promise<District | undefined> {
+    const districtFound = await this.ormRepository.findOne({
+      where: { id },
+      relations: [relation],
+    });
+    return districtFound;
+  }
+
   public async findByName(name:string):Promise<District | undefined> {
     const districtFound = await this.ormRepository.findOne({
       where: { name },

@@ -7,8 +7,7 @@ class GetDistrictService {
   async execute(district_id:string) {
     const districtsRepository = new DistrictsRepository();
 
-    // eslint-disable-next-line max-len
-    const district = await districtsRepository.findById(district_id); // , { relations: ['complaints'] }
+    const district = await districtsRepository.findWithRelations(district_id, 'complaints');
 
     return classToPlain(district);
   }
