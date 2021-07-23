@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable class-methods-use-this */
 import { Request, Response } from 'express';
-import { CreateComplaintService } from '@modules/complaints/services/CreateComplaintService';
+import CreateComplaintService from '@modules/complaints/services/CreateComplaintService';
 
 class CreateComplaintController {
   async handle(request: Request, response: Response) {

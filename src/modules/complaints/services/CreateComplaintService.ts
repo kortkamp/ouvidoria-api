@@ -1,7 +1,6 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable camelcase */
 
-import { getCustomRepository } from 'typeorm';
 import ComplaintsRepository from '@modules/complaints/infra/typeorm/repositories/ComplaintsRepository';
 import DistrictsRepository from '@modules/districts/infra/typeorm/repositories/DistrictsRepository';
 import AppError from '@shared/errors/AppError';
@@ -12,7 +11,7 @@ class CreateComplaintService {
     district_id, user_sender, message,
   }: ICreateComplaintDTO) {
     const complaintsRepository = new ComplaintsRepository();
-    const districtsRepository = getCustomRepository(DistrictsRepository);
+    const districtsRepository = new DistrictsRepository();
 
     const districtExists = await districtsRepository.findById(district_id);
 
