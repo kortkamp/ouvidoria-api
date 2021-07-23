@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npx jest",
     "dev": "DEBUG=ouvidoria-api:* ts-node-dev -r tsconfig-paths/register bin/www",
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
+    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
   },
   "dependencies": {
     "@types/uuid": "^8.3.1",
