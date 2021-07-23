@@ -1,7 +1,8 @@
+/* eslint-disable camelcase */
 /* eslint-disable class-methods-use-this */
 import { Request, Response } from 'express';
 
-import { GetDistrictService } from '@modules/districts/services/GetDistrictService';
+import GetDistrictService from '@modules/districts/services/GetDistrictService';
 
 class ListDistrictsController {
   async handle(request:Request, response:Response) {

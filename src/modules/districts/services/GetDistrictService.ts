@@ -14,4 +14,4 @@ class GetDistrictService {
   }
 }
 
-export { GetDistrictService };
+export default GetDistrictService;
