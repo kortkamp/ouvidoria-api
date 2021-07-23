@@ -1,8 +1,9 @@
+/* eslint-disable camelcase */
 /* eslint-disable class-methods-use-this */
 
 import { getCustomRepository } from 'typeorm';
 import { AnswersRepositories } from '@modules/answers/infra/typeorm/repositories/AnswersRepositories';
-import { ComplaintsRepositories } from '@modules/complaints/infra/typeorm/repositories/ComplaintsRepositories';
+import ComplaintsRepository from '@modules/complaints/infra/typeorm/repositories/ComplaintsRepository';
 import AppError from '@shared/errors/AppError';
 import ICreateAnswerDTO from '../dtos/ICreateAnswerDTO';
 
@@ -11,9 +12,9 @@ class CreateAnswerService {
     complaint_id, user_sender, message,
   }: ICreateAnswerDTO) {
     const answersRepositories = getCustomRepository(AnswersRepositories);
-    const complaintsRepositories = getCustomRepository(ComplaintsRepositories);
+    const complaintsRepositories = new ComplaintsRepository();
 
-    const complaintExists = await complaintsRepositories.findOne(complaint_id);
+    const complaintExists = await complaintsRepositories.findById(complaint_id);
 
     if (!complaintExists) {
       throw new AppError('Complaint does not exists', 401);
@@ -30,4 +31,4 @@ class CreateAnswerService {
     return compliment;
   }
 }
-export { CreateAnswerService };
+export default CreateAnswerService;

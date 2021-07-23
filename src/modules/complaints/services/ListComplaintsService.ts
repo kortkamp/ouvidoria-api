@@ -1,18 +1,15 @@
 /* eslint-disable class-methods-use-this */
 import { getCustomRepository } from 'typeorm';
 import { classToPlain } from 'class-transformer';
-import { ComplaintsRepositories } from '@modules/complaints/infra/typeorm/repositories/ComplaintsRepositories';
+import ComplaintsRepository from '@modules/complaints/infra/typeorm/repositories/ComplaintsRepository';
 
 class ListComplaintsService {
   async execute() {
-    const complaintsRepositories = getCustomRepository(ComplaintsRepositories);
+    const complaintsRepositories = getCustomRepository(ComplaintsRepository);
 
-    const complaints = await complaintsRepositories.find({
-      // relations: ['user'],
-      // select: ['id', 'message', 'user'],
-    });
+    const complaints = await complaintsRepositories.listAll();
     return classToPlain(complaints);
   }
 }
 
-export { ListComplaintsService };
+export default ListComplaintsService;

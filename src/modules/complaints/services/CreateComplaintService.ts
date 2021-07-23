@@ -1,32 +1,30 @@
 /* eslint-disable class-methods-use-this */
+/* eslint-disable camelcase */
 
 import { getCustomRepository } from 'typeorm';
-import { ComplaintsRepositories } from '@modules/complaints/infra/typeorm/repositories/ComplaintsRepositories';
-import DistrictsRepositories from '@modules/districts/infra/typeorm/repositories/DistrictsRepository';
+import ComplaintsRepository from '@modules/complaints/infra/typeorm/repositories/ComplaintsRepository';
+import DistrictsRepository from '@modules/districts/infra/typeorm/repositories/DistrictsRepository';
 import AppError from '@shared/errors/AppError';
 import ICreateComplaintDTO from '../dtos/ICreateComplaintDTO';
-/* eslint-disable camelcase */
 
 class CreateComplaintService {
   async execute({
     district_id, user_sender, message,
   }: ICreateComplaintDTO) {
-    const complaintsRepositories = getCustomRepository(ComplaintsRepositories);
-    const districtsRepositories = getCustomRepository(DistrictsRepositories);
+    const complaintsRepository = new ComplaintsRepository();
+    const districtsRepository = getCustomRepository(DistrictsRepository);
 
-    const districtExists = await districtsRepositories.findById(district_id);
+    const districtExists = await districtsRepository.findById(district_id);
 
     if (!districtExists) {
       throw new AppError('District does not exists', 401);
     }
 
-    const compliment = complaintsRepositories.create({
+    const compliment = complaintsRepository.create({
       district_id,
       user_sender,
       message,
     });
-
-    await complaintsRepositories.save(compliment);
 
     return compliment;
   }
