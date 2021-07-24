@@ -18,6 +18,8 @@ class ComplaintsRepository implements IComplaintRepository {
     user_sender,
     message,
   }:ICreateComplaintDTO):Promise<Complaint> {
+    console.log(message);
+
     const complaint = this.ormRepository.create({
       district_id,
       user_sender,

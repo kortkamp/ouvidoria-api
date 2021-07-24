@@ -1,6 +1,7 @@
-/* eslint-disable camelcase */
-/* eslint-disable class-methods-use-this */
+/* eslint-disable @typescript-eslint/naming-convention */
+
 import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 import CreateComplaintService from '@modules/complaints/services/CreateComplaintService';
 
 class CreateComplaintController {
@@ -11,7 +12,7 @@ class CreateComplaintController {
 
     const { user_id } = request;
 
-    const createComplimentService = new CreateComplaintService();
+    const createComplimentService = container.resolve(CreateComplaintService);
 
     const compliment = await createComplimentService.execute({
       district_id, user_sender: user_id, message,

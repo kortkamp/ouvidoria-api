@@ -1,12 +1,17 @@
 /* eslint-disable class-methods-use-this */
 import { classToPlain } from 'class-transformer';
-import ComplaintsRepository from '@modules/complaints/infra/typeorm/repositories/ComplaintsRepository';
+import { inject, injectable } from 'tsyringe';
+import IComplaintsRepository from '@modules/complaints/repositories/IComplaintsRepository';
 
+@injectable()
 class ListComplaintsService {
-  async execute() {
-    const complaintsRepositories = new ComplaintsRepository();
+  constructor(
+    @inject('ComplaintsRepository')
+    private complaintsRepository: IComplaintsRepository,
+  ) {}
 
-    const complaints = await complaintsRepositories.listAll();
+  async execute() {
+    const complaints = await this.complaintsRepository.listAll();
     return classToPlain(complaints);
   }
 }
