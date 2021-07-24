@@ -1,12 +1,17 @@
 /* eslint-disable camelcase */
 /* eslint-disable class-methods-use-this */
-import AnswersRepository from '@modules/answers/infra/typeorm/repositories/AnswersRepository';
+import IAnswersRepository from '@modules/answers/repositories/IAnswersRepository';
+import { inject, injectable } from 'tsyringe';
 
+@injectable()
 class DeleteAnswerService {
-  async execute(answer_id:string) {
-    const answersRepository = new AnswersRepository();
+  constructor(
+    @inject('AnswersRepository')
+    private answersRepository: IAnswersRepository,
+  ) {}
 
-    const result = await answersRepository.delete(answer_id);
+  async execute(answer_id:string) {
+    const result = await this.answersRepository.delete(answer_id);
 
     return result;
   }

@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-/* eslint-disable class-methods-use-this */
 import ICreateAnswerDTO from '@modules/answers/dtos/ICreateAnswerDTO';
 import IAnswersRepository from '@modules/answers/repositories/IAnswersRepository';
 import AppError from '@shared/errors/AppError';
@@ -45,7 +43,7 @@ class AnswersRepository implements IAnswersRepository {
     if (!answer) {
       throw new AppError('Answer does not exists', 400);
     } else {
-      await this.ormRepository.delete(answer);
+      await this.ormRepository.remove(answer);
     }
   }
 }
