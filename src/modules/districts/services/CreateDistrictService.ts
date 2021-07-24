@@ -22,7 +22,7 @@ class CreateDistrictService {
     );
 
     if (tagAlreadyExists) {
-      throw new AppError('District already exists', 401);
+      throw new AppError('District already exists', 409);
     }
 
     const district = this.districtsRepository.create(
