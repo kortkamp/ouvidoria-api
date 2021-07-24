@@ -1,13 +1,23 @@
 /* eslint-disable camelcase */
 /* eslint-disable class-methods-use-this */
 import { classToPlain } from 'class-transformer';
-import DistrictsRepository from '@modules/districts/infra/typeorm/repositories/DistrictsRepository';
+import IDistrictsRepository from '@modules/districts/repositories/IDistrictRepository';
+import { inject, injectable } from 'tsyringe';
 
+/**
+ class CreateDistrictService {
+
+     */
+
+@injectable()
 class GetDistrictService {
-  async execute(district_id:string) {
-    const districtsRepository = new DistrictsRepository();
+  constructor(
+    @inject('DistrictsRepository')
+    private districtsRepository: IDistrictsRepository,
+  ) {}
 
-    const district = await districtsRepository.findWithRelations(district_id, 'complaints');
+  async execute(district_id:string) {
+    const district = await this.districtsRepository.findWithRelations(district_id, 'complaints');
 
     return classToPlain(district);
   }

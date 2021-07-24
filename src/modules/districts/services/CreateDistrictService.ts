@@ -1,16 +1,23 @@
 /* eslint-disable class-methods-use-this */
-import DistrictsRepository from '@modules/districts/infra/typeorm/repositories/DistrictsRepository';
+import IDistrictsRepository from '@modules/districts/repositories/IDistrictRepository';
 import AppError from '@shared/errors/AppError';
+import { inject, injectable } from 'tsyringe';
 
+@injectable()
 class CreateDistrictService {
+  constructor(
+    @inject('DistrictsRepository')
+    private districtsRepository: IDistrictsRepository,
+  ) {}
+
   async execute(name : string) {
-    const districtsRepository = new DistrictsRepository();
+    // const districtsRepository = new DistrictsRepository();
 
     if (!name) {
       throw new AppError('Invalid Tag Name', 401);
     }
 
-    const tagAlreadyExists = await districtsRepository.findByName(
+    const tagAlreadyExists = await this.districtsRepository.findByName(
       name,
     );
 
@@ -18,7 +25,7 @@ class CreateDistrictService {
       throw new AppError('District already exists', 401);
     }
 
-    const district = districtsRepository.create(
+    const district = this.districtsRepository.create(
       name,
     );
 
