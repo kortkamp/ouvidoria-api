@@ -1,4 +1,5 @@
 /* eslint-disable class-methods-use-this */
+import 'reflect-metadata';
 import IDistrictsRepository from '@modules/districts/repositories/IDistrictRepository';
 import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
