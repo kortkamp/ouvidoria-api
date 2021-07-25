@@ -18,13 +18,13 @@ describe('CreateDistrictService', () => {
     expect(district).toMatchObject({ name: districtName });
   });
 
-  it('Should not be possible to create empty name district', async () => {
+  it('Should not allow creation of empty name district', async () => {
     await expect(
       createDistrictService.execute(''),
     ).rejects.toMatchObject({ statusCode: 401 });
   });
 
-  it('Should not be possible to create an already existent district', async () => {
+  it('Should not allow creation of already existent district', async () => {
     await createDistrictService.execute('districtName2');
     await expect(
       createDistrictService.execute('districtName2'),
