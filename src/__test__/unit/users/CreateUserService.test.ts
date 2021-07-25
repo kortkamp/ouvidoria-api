@@ -27,7 +27,7 @@ describe('CreateUserService', () => {
     expect(passwordMatch).toBeTruthy();
   });
 
-  it('Should return 409 error at creating already existent user ', async () => {
+  it('Should not be able to create an already existent user ', async () => {
     const CreateUserRequest = {
       name: 'user',
       email: 'user@user.com',
