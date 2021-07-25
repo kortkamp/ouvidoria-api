@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 /* eslint-disable class-methods-use-this */
-
+import 'reflect-metadata';
 import IAnswersRepository from '@modules/answers/repositories/IAnswersRepository';
 import IComplaintsRepository from '@modules/complaints/repositories/IComplaintsRepository';
 import AppError from '@shared/errors/AppError';
@@ -22,6 +22,9 @@ class CreateAnswerService {
   async execute({
     complaint_id, user_sender, message,
   }: ICreateAnswerDTO) {
+    if (!message) {
+      throw new AppError('Empty message', 400);
+    }
     const complaintExists = await this.complaintsRepository.findById(complaint_id);
 
     if (!complaintExists) {
