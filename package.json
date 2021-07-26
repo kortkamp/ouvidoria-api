@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "test": "NODE_ENV=test jest --forceExit",
-    "dev": "NODE_ENV=dev DEBUG=ouvidoria-api:* ts-node-dev -r tsconfig-paths/register bin/www",
+    "dev": "NODE_ENV=dev DEBUG=ouvidoria-api:* ts-node-dev -r tsconfig-paths/register ./src/shared/infra/http/server",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
   },
   "dependencies": {
