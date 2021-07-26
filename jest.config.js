@@ -4,7 +4,8 @@ module.exports = {
     '<rootDir>/src/modules/**/services/*.ts'
   ],
   preset: 'ts-jest',
-  testEnvironment: 'node',
+  //timers: "fake",
+  testEnvironment: 'jsdom',
   'roots': [
     '<rootDir>/src'
   ],
