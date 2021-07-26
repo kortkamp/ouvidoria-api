@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test": "jest",
+    "test": "jest --forceExit",
     "dev": "DEBUG=ouvidoria-api:* ts-node-dev -r tsconfig-paths/register bin/www",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
   },
@@ -20,6 +20,7 @@
     "http-errors": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
     "mysql2": "^2.2.5",
     "reflect-metadata": "^0.1.13",
     "tsyringe": "^4.6.0",
