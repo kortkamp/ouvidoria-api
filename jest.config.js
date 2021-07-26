@@ -5,7 +5,7 @@ module.exports = {
   ],
   preset: 'ts-jest',
   //timers: "fake",
-  testEnvironment: 'jsdom',
+  testEnvironment: 'node',
   'roots': [
     '<rootDir>/src'
   ],
