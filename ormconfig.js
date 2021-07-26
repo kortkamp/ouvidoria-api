@@ -6,21 +6,22 @@ const database = {
   test: 'ouvidoria_test'
 }
 
+
 module.exports = {
-  
+  name:"default",
   type: "mysql",
   host: "localhost",
   port: 3306,
   username: "user",
   password: "password",
-  database: database[process.env.NODE_ENV],
+  database: database[process.env.NODE_ENV || 'dev'],
 
   synchronize: true,
   logging: false,
   
   migrations:["src/shared/infra/typeorm/migrations/*.ts"],
   entities:[
-    "src/modules/**/infra/typeorm/entities/*.ts"
+    "/home/marcelo/dev/ouvidoria-api/src/modules/**/infra/typeorm/entities/*.{ts,js}"
   ],
   cli:{
     "migrationsDir": "src/shared/infra/typeorm/migrations",
