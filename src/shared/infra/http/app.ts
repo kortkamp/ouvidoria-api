@@ -1,23 +1,21 @@
 import 'reflect-metadata';
-import express, { Request, Response, NextFunction } from 'express';
-
 import 'express-async-errors';
-import createError from 'http-errors';
+import express, { Request, Response, NextFunction } from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
-import apiRoutes from './routes';
-
-import db from '../typeorm';
-
-import '@shared/container';
 import AppError from '@shared/errors/AppError';
+import apiRoutes from './routes';
+import db from '../typeorm';
+import '@shared/container';
 
 db.create();
 
 const app = express();
 
-app.use(logger('dev'));
+if (process.env.NODE_ENV === 'dev') {
+  app.use(logger('dev'));
+}
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -26,16 +24,11 @@ app.use('/api', apiRoutes);
 
 // catch 404 and forward to error handler
 app.use((req:Request, res:Response, next:NextFunction) => {
-  next(createError(404));
+  throw new AppError('Not Found', 404);
 });
 
 // error handler
 app.use((err: Error, request: Request, response:Response, next:NextFunction) => {
-  // if (err instanceof Error) {
-  //   return response.status(400).json({
-  //     error: err.message,
-  //   });
-  // }
   if (err instanceof AppError) {
     return response.status(err.statusCode).json({
       status: 'error',
@@ -49,4 +42,4 @@ app.use((err: Error, request: Request, response:Response, next:NextFunction) => 
   });
 });
 
-module.exports = app;
+export default app;
