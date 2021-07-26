@@ -15,7 +15,7 @@ describe('Users integration test', () => {
 
   beforeAll(async () => {
     await db.create();
-    // await db.clear();
+    await db.clear();
   });
 
   afterAll(async () => {
