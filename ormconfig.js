@@ -19,9 +19,11 @@ module.exports = {
   synchronize: true,
   logging: false,
   
-  migrations:["src/shared/infra/typeorm/migrations/*.ts"],
+  migrations:["./shared/infra/typeorm/migrations/*.ts"],
   entities:[
-    "/home/marcelo/dev/ouvidoria-api/src/modules/**/infra/typeorm/entities/*.{ts,js}"
+    //"/home/marcelo/dev/ouvidoria-api/src/modules/**/infra/typeorm/entities/*.{ts,js}"
+    //"dist/modules/**/infra/typeorm/entities/*.{ts,js}"
+    "./src/modules/**/infra/typeorm/entities/*.{ts,js}"
   ],
   cli:{
     "migrationsDir": "src/shared/infra/typeorm/migrations",
