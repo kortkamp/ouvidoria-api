@@ -8,9 +8,12 @@ import logger from 'morgan';
 
 import apiRoutes from './routes';
 
-import '../typeorm/index';
+import db from '../typeorm';
+
 import '@shared/container';
 import AppError from '@shared/errors/AppError';
+
+db.create();
 
 const app = express();
 
