@@ -1,4 +1,5 @@
 import IDistrictRepository from '@modules/districts/repositories/IDistrictRepository';
+import AppError from '@shared/errors/AppError';
 import { getRepository, Repository } from 'typeorm';
 import { District } from '../entities/District';
 
@@ -20,6 +21,9 @@ class DistrictsRepository implements IDistrictRepository {
     const districtFound = await this.ormRepository.findOne({
       where: { id },
     });
+    if (!districtFound) {
+      throw new AppError('District not found', 404);
+    }
     return districtFound;
   }
 
@@ -28,6 +32,9 @@ class DistrictsRepository implements IDistrictRepository {
       where: { id },
       relations: [relation],
     });
+    if (!districtFound) {
+      throw new AppError('District not found', 404);
+    }
     return districtFound;
   }
 
