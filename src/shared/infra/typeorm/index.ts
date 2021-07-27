@@ -11,12 +11,17 @@ const db = {
 
   async clear() {
     const connection = getConnection();
-    const entities = connection.entityMetadatas;
+    //   const entities = connection.entityMetadatas;
 
-    entities.forEach(async (entity) => {
-      const repository = connection.getRepository(entity.name);
-      await repository.query(`DELETE FROM ${entity.tableName}`);
-    });
+    await connection.query('DELETE FROM answers');
+    await connection.query('DELETE FROM complaints');
+    await connection.query('DELETE FROM districts');
+    await connection.query('DELETE FROM users');
+
+    // entities.forEach(async (entity) => {
+    //   const repository = connection.getRepository(entity.name);
+    //   await repository.query(`DELETE FROM ${entity.tableName}`);
+    // });
   },
 };
 export default db;
