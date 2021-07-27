@@ -8,6 +8,7 @@ describe('Districts integration test', () => {
   const createUserRequest = {
     name: 'John',
     email: 'john@email.com',
+    admin: true,
     password: '123456',
   };
 
