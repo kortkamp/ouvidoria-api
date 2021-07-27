@@ -4,6 +4,7 @@ import ensureAuthenticated from '@shared/infra/http/middlewares/ensureAuthentica
 import CreateDistrictController from '@modules/districts/infra/http/controllers/CreateDistrictController';
 import ListDistrictsController from '@modules/districts/infra/http/controllers/ListDistrictsController';
 import GetDistrictController from '@modules/districts/infra/http/controllers/GetDistrictController';
+import ensureAdmin from '@shared/infra/http/middlewares/ensureAdmin';
 
 const route = Router();
 
@@ -16,5 +17,5 @@ export default (app: Router) => {
 
   route.get('/', listDistrictsController.handle);
   route.get('/:district_id', getDistrictController.handle);
-  route.post('/', ensureAuthenticated, createDistrictController.handle);
+  route.post('/', ensureAuthenticated, ensureAdmin, createDistrictController.handle);
 };
