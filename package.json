@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
     "runDist": "NODE_ENV=dist node dist/shared/infra/http/server.js",
-    "test": "NODE_ENV=test jest --forceExit",
+    "test": "NODE_ENV=test jest --runInBand --forceExit",
     "dev": "NODE_ENV=dev DEBUG=ouvidoria-api:* ts-node-dev -r tsconfig-paths/register ./src/shared/infra/http/server",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
   },
