@@ -30,6 +30,10 @@ class FakeComplaintsRepository implements IComplaintsRepository {
     return district;
   }
 
+  public async delete(id:string):Promise<void> {
+    this.complaints.filter((complaint) => complaint.id !== id);
+  }
+
   public async listAll():Promise<Complaint[]> {
     return this.complaints;
   }
