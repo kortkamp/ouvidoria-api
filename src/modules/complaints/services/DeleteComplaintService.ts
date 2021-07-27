@@ -29,7 +29,6 @@ class DeleteComplaintService {
     await this.complaintsRepository.delete(
       complaint_id,
     );
-    return complaint;
   }
 }
 export default DeleteComplaintService;
