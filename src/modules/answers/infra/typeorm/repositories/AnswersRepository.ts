@@ -41,7 +41,7 @@ class AnswersRepository implements IAnswersRepository {
   public async delete(id:string):Promise<void> {
     const answer = await this.findById(id);
     if (!answer) {
-      throw new AppError('Answer does not exists', 400);
+      throw new AppError('Answer does not exists', 404);
     } else {
       await this.ormRepository.remove(answer);
     }
