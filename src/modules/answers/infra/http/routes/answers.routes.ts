@@ -13,6 +13,6 @@ const deleteAnswerController = new DeleteAnswerController();
 export default (app: Router) => {
   app.use('/answers', route);
 
-  route.post('/', ensureAuthenticated, createAnswerController.handle);
+  route.post('/', ensureAuthenticated, ensureAdmin, createAnswerController.handle);
   route.delete('/:answer_id', ensureAuthenticated, ensureAdmin, deleteAnswerController.handle);
 };
