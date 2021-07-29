@@ -157,3 +157,5 @@ POST http://your.url/api/complaints
 ```
 
 gonna stop doc here cuz will be implemented a Solve Service to complaints and a deadline time to auto checked as solved or not.
+
+must add image upload to complaints prefer user s3 for image upload
