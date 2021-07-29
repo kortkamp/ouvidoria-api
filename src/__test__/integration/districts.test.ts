@@ -48,6 +48,7 @@ describe('Districts integration test', () => {
   afterAll(async () => {
     await db.clear();
   });
+
   it('Should not allow creation of Districts without auth', async () => {
     httpResponse = await httpRequest(app).post('/api/districts').send({
       name: 'central park',
