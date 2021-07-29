@@ -1,8 +1,6 @@
 /* eslint-disable camelcase */
-/* eslint-disable class-methods-use-this */
 import ICreateComplaintDTO from '@modules/complaints/dtos/ICreateComplaintDTO';
 import IComplaintRepository from '@modules/complaints/repositories/IComplaintsRepository';
-import AppError from '@shared/errors/AppError';
 import { getRepository, Repository } from 'typeorm';
 
 import { Complaint } from '../entities/Complaint';
@@ -37,9 +35,7 @@ class ComplaintsRepository implements IComplaintRepository {
 
   public async delete(id:string):Promise<void> {
     const complaint = await this.findById(id);
-    if (!complaint) {
-      throw new AppError('Answer does not exists', 404);
-    } else {
+    if (complaint) {
       await this.ormRepository.remove(complaint);
     }
   }
