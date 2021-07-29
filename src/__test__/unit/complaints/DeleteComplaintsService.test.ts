@@ -54,4 +54,14 @@ describe('DeleteComplaintsService', () => {
 
     ).resolves.toBeUndefined();
   });
+
+  it('Should return error at deleting an enexistent complaint', async () => {
+    await expect(
+      deleteComplaintService.execute({
+        complaint_id: 'enexistent_complaint_id',
+        user_sender: complaint.user_sender,
+      }),
+
+    ).rejects.toMatchObject({ statusCode: 404 });
+  });
 });
