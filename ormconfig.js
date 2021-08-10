@@ -1,4 +1,4 @@
-require('dotenv/config');
+//require('dotenv/config');
 
 
 const database = {
@@ -25,13 +25,13 @@ module.exports = {
   synchronize: true,
   logging: false,
   
-  migrations:["./shared/infra/typeorm/migrations/*.ts"],
+  migrations:["src/shared/infra/typeorm/migrations/*.ts"],
   entities:[
     entitiesDir[process.env.NODE_ENV || 'dev'],
   ],
   cli:{
-    "migrationsDir": "src/shared/infra/typeorm/migrations",
-    "entitiesDir": "src/modules/**/infra/typeorm/entities"
+    migrationsDir: "src/shared/infra/typeorm/migrations",
+    entitiesDir: "src/modules/**/infra/typeorm/entities"
   }
 }
 
