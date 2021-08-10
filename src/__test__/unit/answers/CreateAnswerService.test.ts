@@ -31,6 +31,7 @@ describe('CreateAnswerService', () => {
       complaint_id: complaint.id,
       user_sender: '1',
       message: 'Some random answer',
+      deadline: 0,
     };
   });
 
