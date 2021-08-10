@@ -6,7 +6,7 @@ import CreateAnswerService from '@modules/answers/services/CreateAnswerService';
 class CreateAnswerController {
   async handle(request: Request, response: Response) {
     const {
-      complaint_id, message,
+      complaint_id, message, deadline,
     } = request.body;
 
     const { user_id } = request;
@@ -14,7 +14,7 @@ class CreateAnswerController {
     const createAnswerService = container.resolve(CreateAnswerService);
 
     const compliment = await createAnswerService.execute({
-      complaint_id, user_sender: user_id, message,
+      complaint_id, user_sender: user_id, message, deadline,
     });
 
     response.json(compliment);

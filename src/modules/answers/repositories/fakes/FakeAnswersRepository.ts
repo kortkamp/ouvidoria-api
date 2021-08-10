@@ -10,6 +10,7 @@ class FakeAnswersRepository implements IAnswersRepository {
     complaint_id,
     user_sender,
     message,
+    deadline,
   }:ICreateAnswerDTO): Promise<Answer> {
     const answer = new Answer();
 
@@ -18,6 +19,7 @@ class FakeAnswersRepository implements IAnswersRepository {
       complaint_id,
       user_sender,
       message,
+      deadline,
     });
 
     this.answers.push(answer);

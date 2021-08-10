@@ -20,7 +20,7 @@ class CreateAnswerService {
   ) {}
 
   async execute({
-    complaint_id, user_sender, message,
+    complaint_id, user_sender, message, deadline = 0,
   }: ICreateAnswerDTO) {
     if (!message) {
       throw new AppError('Empty message', 400);
@@ -35,6 +35,7 @@ class CreateAnswerService {
       complaint_id,
       user_sender,
       message,
+      deadline,
     });
 
     return answer;

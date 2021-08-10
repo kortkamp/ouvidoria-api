@@ -15,11 +15,13 @@ class AnswersRepository implements IAnswersRepository {
     complaint_id,
     user_sender,
     message,
+    deadline,
   }:ICreateAnswerDTO):Promise<Answer> {
     const answer = this.ormRepository.create({
       complaint_id,
       user_sender,
       message,
+      deadline,
     });
     await this.ormRepository.save(answer);
     return answer;
