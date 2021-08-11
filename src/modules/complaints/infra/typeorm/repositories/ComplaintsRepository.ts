@@ -16,11 +16,13 @@ class ComplaintsRepository implements IComplaintRepository {
     district_id,
     user_sender,
     message,
+    image,
   }:ICreateComplaintDTO):Promise<Complaint> {
     const complaint = this.ormRepository.create({
       district_id,
       user_sender,
       message,
+      image,
     });
     await this.ormRepository.save(complaint);
     return complaint;

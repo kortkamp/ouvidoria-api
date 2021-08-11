@@ -17,7 +17,7 @@ class CreateComplaintService {
   ) {}
 
   async execute({
-    district_id, user_sender, message,
+    district_id, user_sender, message, image = '',
   }: ICreateComplaintDTO) {
     if (!message) {
       throw new AppError('Empty message', 400);
@@ -30,6 +30,7 @@ class CreateComplaintService {
       district_id,
       user_sender,
       message,
+      image,
     });
     return complaint;
   }

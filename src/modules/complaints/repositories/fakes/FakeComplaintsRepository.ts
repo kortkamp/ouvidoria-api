@@ -10,6 +10,7 @@ class FakeComplaintsRepository implements IComplaintsRepository {
     district_id,
     user_sender,
     message,
+    image,
   }:ICreateComplaintDTO): Promise<Complaint> {
     const complaint = new Complaint();
     Object.assign(complaint, {
@@ -17,6 +18,7 @@ class FakeComplaintsRepository implements IComplaintsRepository {
       district_id,
       user_sender,
       message,
+      image,
     });
 
     this.complaints.push(complaint);

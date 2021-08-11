@@ -37,8 +37,11 @@ class Complaint {
   @Column()
   message: string;
 
+  @Column()
+  image: string;
+
   @CreateDateColumn()
-  created_at: Date
+  created_at: Date;
 
   constructor() {
     if (!this.id) {
