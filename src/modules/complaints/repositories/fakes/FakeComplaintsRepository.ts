@@ -39,6 +39,13 @@ class FakeComplaintsRepository implements IComplaintsRepository {
   public async listAll():Promise<Complaint[]> {
     return this.complaints;
   }
+
+  public async listByUser(user:string):Promise<Complaint[]> {
+    const filteredComplaints = this.complaints.filter(
+      (complaint) => complaint.user_sender === user,
+    );
+    return filteredComplaints;
+  }
 }
 
 export default FakeComplaintsRepository;

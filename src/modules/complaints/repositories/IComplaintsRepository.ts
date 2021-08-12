@@ -8,6 +8,7 @@ interface IComplaintsRepository {
   findById(id:string):Promise<Complaint | undefined>;
   delete(id:string):Promise<void>;
   listAll():Promise<Complaint[]>;
+  listByUser(user:string):Promise<Complaint[]>;
 }
 
 export default IComplaintsRepository;

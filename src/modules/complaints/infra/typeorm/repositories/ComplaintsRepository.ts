@@ -46,6 +46,13 @@ class ComplaintsRepository implements IComplaintRepository {
     const complaints = await this.ormRepository.find();
     return complaints;
   }
+
+  public async listByUser(user:string):Promise<Complaint[]> {
+    const complaintsFound = await this.ormRepository.find({
+      where: { user_sender: user },
+    });
+    return complaintsFound;
+  }
 }
 
 export default ComplaintsRepository;
