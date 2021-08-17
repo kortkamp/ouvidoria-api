@@ -2,6 +2,7 @@
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO';
 import { getRepository, Repository } from 'typeorm';
+import AppError from '@shared/errors/AppError';
 import { User } from '../entities/User';
 
 class UsersRepository implements IUsersRepository {
@@ -40,6 +41,17 @@ class UsersRepository implements IUsersRepository {
     const userFound = await this.ormRepository.findOne({
       where: { email },
     });
+    return userFound;
+  }
+
+  public async findWithRelations(user_id:string, relation:string):Promise<User | undefined> {
+    const userFound = await this.ormRepository.findOne({
+      where: { id: user_id },
+      relations: [relation],
+    });
+    if (!userFound) {
+      throw new AppError('District not found', 404);
+    }
     return userFound;
   }
 }
