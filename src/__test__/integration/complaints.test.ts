@@ -25,7 +25,7 @@ describe('Districts integration test', () => {
       email: createUserRequest.email,
       password: createUserRequest.password,
     });
-    bearerToken = httpResponse.body;
+    bearerToken = httpResponse.body.token;
 
     httpResponse = await httpRequest(app).post('/api/districts').send({
       name: 'central park',

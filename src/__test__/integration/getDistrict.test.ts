@@ -35,13 +35,13 @@ describe('Districts integration test', () => {
       email: createUserRequest.email,
       password: createUserRequest.password,
     });
-    userBearerToken = httpResponse.body;
+    userBearerToken = httpResponse.body.token;
 
     httpResponse = await httpRequest(app).post('/api/login').send({
       email: createAdminRequest.email,
       password: createAdminRequest.password,
     });
-    adminBearerToken = httpResponse.body;
+    adminBearerToken = httpResponse.body.token;
 
     // create a district
     httpResponse = await httpRequest(app).post('/api/districts').send({
