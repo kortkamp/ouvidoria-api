@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import 'express-async-errors';
 import express, { Request, Response, NextFunction } from 'express';
+import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
@@ -12,6 +13,8 @@ import '@shared/container';
 db.create();
 
 const app = express();
+
+app.use(cors());
 
 if (process.env.NODE_ENV === 'dev') {
   app.use(logger('dev'));
