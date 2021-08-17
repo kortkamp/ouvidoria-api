@@ -42,7 +42,11 @@ class AuthenticateUserService {
       expiresIn: '1d',
     });
 
-    return token;
+    return {
+      token,
+      name: user.name,
+      admin: user.admin,
+    };
   }
 }
 
