@@ -36,6 +36,9 @@ describe('Users integration test', () => {
     });
     expect(httpResponse.status).toEqual(200);
     expect(httpResponse.body).toBeTruthy();
+    expect(httpResponse.body).toHaveProperty('token');
+    expect(httpResponse.body).toHaveProperty('name');
+    expect(httpResponse.body).toHaveProperty('admin');
   });
   it('Should not allow authentication with wrong password', async () => {
     const httpResponse = await httpRequest(app).post('/api/login').send({
