@@ -7,7 +7,7 @@ import CreateComplaintService from '@modules/complaints/services/CreateComplaint
 class CreateComplaintController {
   async handle(request: Request, response: Response) {
     const {
-      district_id, message,
+      district_id, message, image,
     } = request.body;
 
     const { user_id } = request;
@@ -15,7 +15,7 @@ class CreateComplaintController {
     const createComplimentService = container.resolve(CreateComplaintService);
 
     const compliment = await createComplimentService.execute({
-      district_id, user_sender: user_id, message,
+      district_id, user_sender: user_id, message, image,
     });
 
     response.json(compliment);
