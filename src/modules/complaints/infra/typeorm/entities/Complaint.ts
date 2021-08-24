@@ -34,7 +34,9 @@ class Complaint {
   @JoinColumn({ name: 'id' })
   answers: Answer[];
 
-  @Column()
+  @Column({
+    length: 1000,
+  })
   message: string;
 
   @Column()

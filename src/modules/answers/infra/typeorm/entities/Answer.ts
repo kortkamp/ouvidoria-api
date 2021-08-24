@@ -29,7 +29,9 @@ class Answer {
   @JoinColumn({ name: 'complaint_id' })
   complaint: Complaint;
 
-  @Column()
+  @Column({
+    length: 1000,
+  })
   message: string;
 
   @Column()
