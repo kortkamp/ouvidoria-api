@@ -17,7 +17,7 @@ class GetDistrictService {
   ) {}
 
   async execute(district_id:string) {
-    const district = await this.districtsRepository.findWithRelations(district_id, 'complaints');
+    const district = await this.districtsRepository.findById(district_id);
 
     return classToPlain(district);
   }
