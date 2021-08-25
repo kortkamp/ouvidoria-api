@@ -5,6 +5,16 @@ import { getRepository, Repository } from 'typeorm';
 
 import { Complaint } from '../entities/Complaint';
 
+interface IComplaintsPaginated {
+  complaints:Complaint[];
+  total: number;
+}
+
+interface IPage {
+  take:number;
+  skip:number;
+}
+
 class ComplaintsRepository implements IComplaintRepository {
   private ormRepository: Repository<Complaint>;
 
@@ -52,6 +62,22 @@ class ComplaintsRepository implements IComplaintRepository {
       where: { user_sender: user },
     });
     return complaintsFound;
+  }
+
+  public async listByDistrict(
+    district_id:string,
+    { take, skip }:IPage,
+  ):Promise<IComplaintsPaginated> {
+    const [complaints, total] = await this.ormRepository.findAndCount({
+      where: { district_id },
+      take,
+      skip,
+      order: { created_at: 'DESC' },
+    });
+    return {
+      complaints,
+      total,
+    };
   }
 }
 
