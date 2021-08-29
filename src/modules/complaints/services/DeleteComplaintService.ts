@@ -17,16 +17,16 @@ class DeleteComplaintService {
   ) {}
 
   async execute({
-    complaint_id, user_sender,
+    complaint_id, user_id,
   }: IDeleteComplaintDTO) {
     // must check if user_sender is admin or complaint author
     const complaint = await this.complaintsRepository.findById(
       complaint_id,
     );
     if (!complaint) {
-      throw new AppError('Complaint not Found', 404);
+      throw new AppError('Complaint not Found', 400);
     }
-    if (complaint?.user_sender !== user_sender) {
+    if (complaint?.user_sender !== user_id) {
       throw new AppError('User is not the complaint author', 401);
     }
     await this.complaintsRepository.delete(

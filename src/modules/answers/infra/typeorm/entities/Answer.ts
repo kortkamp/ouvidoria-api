@@ -25,7 +25,7 @@ class Answer {
   @Column()
   complaint_id:string;
 
-  @ManyToOne(() => Complaint, (complaint) => complaint.answers)
+  @ManyToOne(() => Complaint, (complaint) => complaint.answers, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'complaint_id' })
   complaint: Complaint;
 
