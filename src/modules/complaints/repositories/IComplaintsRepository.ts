@@ -18,7 +18,7 @@ interface IComplaintsRepository {
   findById(id:string):Promise<Complaint | undefined>;
   delete(id:string):Promise<void>;
   listAll():Promise<Complaint[]>;
-  listByUser(user:string):Promise<Complaint[]>;
+  listByUser(sender_id:string, page:IPage):Promise<IComplaintsPaginated>;
   listByDistrict(district_id:string, page:IPage):Promise<IComplaintsPaginated>;
 }
 

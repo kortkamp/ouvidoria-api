@@ -57,19 +57,28 @@ class ComplaintsRepository implements IComplaintRepository {
     return complaints;
   }
 
-  public async listByUser(user:string):Promise<Complaint[]> {
-    const complaintsFound = await this.ormRepository.find({
-      where: { user_sender: user },
-    });
-    return complaintsFound;
-  }
-
   public async listByDistrict(
     district_id:string,
     { take, skip }:IPage,
   ):Promise<IComplaintsPaginated> {
     const [complaints, total] = await this.ormRepository.findAndCount({
       where: { district_id },
+      take,
+      skip,
+      order: { created_at: 'DESC' },
+    });
+    return {
+      complaints,
+      total,
+    };
+  }
+
+  public async listByUser(
+    sender_id:string,
+    { take, skip }:IPage,
+  ):Promise<IComplaintsPaginated> {
+    const [complaints, total] = await this.ormRepository.findAndCount({
+      where: { user_sender: sender_id },
       take,
       skip,
       order: { created_at: 'DESC' },
