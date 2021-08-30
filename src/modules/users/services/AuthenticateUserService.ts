@@ -46,9 +46,11 @@ class AuthenticateUserService {
     });
 
     return {
+      id: user.id,
       token,
       name: user.name,
       admin: user.admin,
+
     };
   }
 }
