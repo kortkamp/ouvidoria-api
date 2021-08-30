@@ -34,6 +34,9 @@ class AuthenticateUserService {
     }
 
     const token = sign({
+      id: user.id,
+      name: user.name,
+      admin: user.admin,
       email: user.email,
     },
     config.jwtSecret,
