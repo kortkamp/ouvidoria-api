@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import { Exclude } from 'class-transformer';
 import {
-  Entity, PrimaryColumn, Column, CreateDateColumn, JoinColumn, ManyToOne, OneToMany,
+  Entity, PrimaryColumn, Column, CreateDateColumn, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn,
 } from 'typeorm';
 
 import { v4 as uuid } from 'uuid';
@@ -11,8 +11,11 @@ import { User } from '@modules/users/infra/typeorm/entities/User';
 
 @Entity('complaints')
 class Complaint {
-  @PrimaryColumn()
-  readonly id: string;
+  // @PrimaryColumn()
+  // readonly id: string;
+
+  @PrimaryGeneratedColumn('increment', { type: 'bigint' })
+  readonly id: number;
 
   @Exclude()
   @Column()
@@ -45,11 +48,11 @@ class Complaint {
   @CreateDateColumn()
   created_at: Date;
 
-  constructor() {
-    if (!this.id) {
-      this.id = uuid();
-    }
-  }
+  // constructor() {
+  //   if (!this.id) {
+  //     this.id = uuid();
+  //   }
+  // }
 }
 
 export { Complaint };
