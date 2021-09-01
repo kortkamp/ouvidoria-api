@@ -29,6 +29,9 @@ class District {
     return `#${this.name}`;
   }
 
+  @Column({ width: 256, nullable: true })
+  image: string;
+
   constructor() {
     if (!this.id) {
       this.id = uuid();
