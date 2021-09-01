@@ -16,10 +16,6 @@ class District {
   @Column()
   name: string;
 
-  @OneToMany(() => Complaint, (complaint) => complaint.district)
-  @JoinColumn({ name: 'id' })
-  complaints: Complaint[];
-
   @Exclude()
   @CreateDateColumn()
   created_at: Date;

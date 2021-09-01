@@ -1,10 +1,10 @@
 /* eslint-disable camelcase */
 import { Exclude } from 'class-transformer';
 import {
-  Entity, PrimaryColumn, Column, CreateDateColumn, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn,
+  Entity, Column, CreateDateColumn, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { v4 as uuid } from 'uuid';
+// import { v4 as uuid } from 'uuid';
 import { Answer } from '@modules/answers/infra/typeorm/entities/Answer';
 import { District } from '@modules/districts/infra/typeorm/entities/District';
 import { User } from '@modules/users/infra/typeorm/entities/User';
@@ -29,9 +29,9 @@ class Complaint {
   @Column()
   district_id:string;
 
-  @ManyToOne(() => District, (district) => district.complaints)
+  @ManyToOne(() => District, (district) => district, { eager: true })
   @JoinColumn({ name: 'district_id' })
-  district: District;
+  districtData: District;
 
   @OneToMany(() => Answer, (answers) => answers.complaint, { eager: true })
   @JoinColumn({ name: 'id' })

@@ -1,12 +1,11 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable camelcase */
 import {
-  Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, JoinColumn, OneToMany,
+  Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 
 import { Exclude } from 'class-transformer';
-import { Complaint } from '@modules/complaints/infra/typeorm/entities/Complaint';
 
 @Entity('users')
 class User {
@@ -27,10 +26,6 @@ class User {
   @Exclude()
   @Column()
   password:string;
-
-  @OneToMany(() => Complaint, (complaint) => complaint.user)
-  @JoinColumn({ name: 'id' })
-  complaints: Complaint[];
 
   @Exclude()
   @CreateDateColumn()
