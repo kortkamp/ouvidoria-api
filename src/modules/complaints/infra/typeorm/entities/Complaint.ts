@@ -45,6 +45,9 @@ class Complaint {
   @Column()
   image: string;
 
+  @Column({ nullable: true })
+  solved: boolean;
+
   @CreateDateColumn()
   created_at: Date;
 
