@@ -32,7 +32,7 @@ class CreateComplaintService {
     }
 
     complaintFound.solved = solved;
-    this.complaintsRepository.update(complaintFound);
+    await this.complaintsRepository.update(complaintFound);
 
     return classToPlain(complaintFound);
   }
