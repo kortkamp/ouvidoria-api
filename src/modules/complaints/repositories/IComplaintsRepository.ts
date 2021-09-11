@@ -15,8 +15,9 @@ interface IPage {
 
 interface IComplaintsRepository {
   create(complaint: ICreateComplaintDTO): Promise<Complaint>;
-  findById(id:string):Promise<Complaint | undefined>;
-  delete(id:string):Promise<void>;
+  update(complaint: Complaint): Promise<void>;
+  findById(id:number):Promise<Complaint | undefined>;
+  delete(id:number):Promise<void>;
   listAll():Promise<Complaint[]>;
   listByUser(sender_id:string, page:IPage):Promise<IComplaintsPaginated>;
   listByDistrict(district_id:string, page:IPage):Promise<IComplaintsPaginated>;

@@ -38,14 +38,18 @@ class ComplaintsRepository implements IComplaintRepository {
     return complaint;
   }
 
-  public async findById(id:string):Promise<Complaint | undefined> {
+  public async update(complaint:Complaint): Promise<void> {
+    await this.ormRepository.save(complaint);
+  }
+
+  public async findById(id:number):Promise<Complaint | undefined> {
     const complaintFound = await this.ormRepository.findOne({
       where: { id },
     });
     return complaintFound;
   }
 
-  public async delete(id:string):Promise<void> {
+  public async delete(id:number):Promise<void> {
     const complaint = await this.findById(id);
     if (complaint) {
       await this.ormRepository.remove(complaint);
