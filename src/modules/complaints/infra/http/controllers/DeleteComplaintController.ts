@@ -15,7 +15,7 @@ class DeleteComplaintController {
     const deleteComplimentService = container.resolve(DeleteComplaintService);
 
     const compliment = await deleteComplimentService.execute({
-      complaint_id, user_id,
+      complaint_id: Number(complaint_id), user_id,
     });
 
     response.json(compliment);

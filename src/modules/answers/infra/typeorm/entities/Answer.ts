@@ -23,7 +23,7 @@ class Answer {
 
   @Exclude()
   @Column()
-  complaint_id:string;
+  complaint_id:number;
 
   @ManyToOne(() => Complaint, (complaint) => complaint.answers, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'complaint_id' })

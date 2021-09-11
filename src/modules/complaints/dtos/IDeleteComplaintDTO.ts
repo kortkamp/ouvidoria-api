@@ -1,5 +1,5 @@
 export default interface IDeleteComplaintDTO {
-  complaint_id: string;
+  complaint_id: number;
   user_id:string;
 
 }
