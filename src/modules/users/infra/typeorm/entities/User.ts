@@ -9,7 +9,6 @@ import { Exclude } from 'class-transformer';
 
 @Entity('users')
 class User {
-  @Exclude()
   @PrimaryColumn()
   readonly id: string;
 
