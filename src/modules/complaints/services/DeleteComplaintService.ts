@@ -5,6 +5,7 @@ import IComplaintsRepository from '@modules/complaints/repositories/IComplaintsR
 import IDistrictsRepository from '@modules/districts/repositories/IDistrictRepository';
 import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import IDeleteComplaintDTO from '../dtos/IDeleteComplaintDTO';
 
 @injectable()
@@ -14,6 +15,8 @@ class DeleteComplaintService {
     private complaintsRepository: IComplaintsRepository,
     @inject('DistrictsRepository')
     private districtsRepository: IDistrictsRepository,
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
   ) {}
 
   async execute({
@@ -27,7 +30,10 @@ class DeleteComplaintService {
       throw new AppError('Complaint not Found', 400);
     }
     if (complaint?.user_sender !== user_id) {
-      throw new AppError('User is not the complaint author', 401);
+      const user = await this.usersRepository.findById(user_id);
+      if (!user?.admin) {
+        throw new AppError('User is not the complaint author', 401);
+      }
     }
     await this.complaintsRepository.delete(
       complaint_id,
