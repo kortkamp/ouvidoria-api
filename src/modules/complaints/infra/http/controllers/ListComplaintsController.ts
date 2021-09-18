@@ -7,8 +7,26 @@ import ListComplaintsService from '@modules/complaints/services/ListComplaintsSe
 class ListComplaintsController {
   async handle(request:Request, response:Response) {
     const listComplaintsService = container.resolve(ListComplaintsService);
+    const { user_id } = request;
+    const {
+      district_id, user_sender, search, page, limit,
+    } = request.query as {
+      user_id:string,
+      district_id:string,
+      user_sender:string,
+      search:string,
+      page:string,
+      limit:string
+    };
 
-    const districts = await listComplaintsService.execute();
+    const districts = await listComplaintsService.execute({
+      user_id,
+      district_id,
+      user_sender,
+      search,
+      page,
+      limit,
+    });
 
     return response.json(districts);
   }

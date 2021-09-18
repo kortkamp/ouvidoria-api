@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 import { Complaint } from '@modules/complaints/infra/typeorm/entities/Complaint';
 import ICreateComplaintDTO from '@modules/complaints/dtos/ICreateComplaintDTO';
+import IFindDTO from '../dtos/IFindDTO';
 
 interface IComplaintsPaginated {
   total: number;
@@ -19,6 +20,11 @@ interface IComplaintsRepository {
   findById(id:number):Promise<Complaint | undefined>;
   delete(id:number):Promise<void>;
   listAll():Promise<Complaint[]>;
+  list({
+    filter,
+    take,
+    skip,
+  }:IFindDTO):Promise<IComplaintsPaginated>;
   listByUser(sender_id:string, page:IPage):Promise<IComplaintsPaginated>;
   listByDistrict(district_id:string, page:IPage):Promise<IComplaintsPaginated>;
 }

@@ -20,7 +20,7 @@ const setSolvedController = new SetSolvedController();
 export default (app: Router) => {
   app.use('/complaints', route);
 
-  route.get('/', ensureAuthenticated, listComplaintsController.handle);
+  route.get('/', listComplaintsController.handle);
   route.post('/', ensureAuthenticated, createComplaintController.handle);
   route.delete('/:complaint_id', ensureAuthenticated, deleteComplaintController.handle);
   route.get('/district/:district_id', listComplaintsByDistrictController.handle);

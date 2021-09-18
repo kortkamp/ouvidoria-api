@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 import ICreateComplaintDTO from '@modules/complaints/dtos/ICreateComplaintDTO';
+import IFindDTO from '@modules/complaints/dtos/IFindDTO';
 import IComplaintRepository from '@modules/complaints/repositories/IComplaintsRepository';
 import { getRepository, Repository } from 'typeorm';
 
@@ -59,6 +60,25 @@ class ComplaintsRepository implements IComplaintRepository {
   public async listAll():Promise<Complaint[]> {
     const complaints = await this.ormRepository.find();
     return complaints;
+  }
+
+  public async list({
+    filter,
+    take,
+    skip,
+  }:IFindDTO):Promise<IComplaintsPaginated> {
+    const [complaints, total] = await this.ormRepository.findAndCount({
+      where: {
+        ...filter,
+      },
+      take,
+      skip,
+      order: { created_at: 'DESC' },
+    });
+    return {
+      complaints,
+      total,
+    };
   }
 
   public async listByDistrict(
